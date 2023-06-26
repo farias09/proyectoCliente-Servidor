@@ -114,6 +114,7 @@ public class Empleado extends Persona implements CrudInterface{
 
     @Override
     public void modificar() {
+        boolean valorCorrecto = false;
         int cedula;
         int opc;
         
@@ -142,8 +143,22 @@ public class Empleado extends Persona implements CrudInterface{
                 switch(opc){
         //en el caso 1 editamos la cedula            
         case 1:{
-            listaEmpleados.get(i).setID(Integer.parseInt(JOptionPane.showInputDialog
-            ("Digite la cedula del empleado")));
+            int cedulaNueva = 0;
+            
+            while(!valorCorrecto){
+                //creamos un try catch para evitar que se caiga el programa
+                try {
+                    cedulaNueva = Integer.parseInt
+                    (JOptionPane.showInputDialog("Ingrese la cedula del empleado"));
+                    valorCorrecto = true;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Valor Incorrecto");
+                }
+            }
+            //Le devolvemos el valor a false para que siga funcionando a futuro
+            valorCorrecto = false;
+            
+            listaEmpleados.get(i).setID(cedulaNueva);
             consultar();
             break;
                     }
@@ -156,15 +171,45 @@ public class Empleado extends Persona implements CrudInterface{
                     }
         //en el caso 3 editamos la edad
         case 3:{
-            listaEmpleados.get(i).setEdad(Integer.parseInt(JOptionPane.showInputDialog
-            ("Digite la edad del empleado")));
+            //creamos una variable nueva para almacenar la nueva edad
+            int edadNueva = 0;
+            
+            while(!valorCorrecto){
+                //creamos un try catch para evitar que se caiga el programa
+                try {
+                    edadNueva = Integer.parseInt
+                    (JOptionPane.showInputDialog("Digite la edad del empleado"));
+                    valorCorrecto = true;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Valor Incorrecto");
+                }
+            }
+            //Le devolvemos el valor a false para que siga funcionando a futuro
+            valorCorrecto = false;
+            //guardamos la variable nueva en donde estaba la edad anterior
+            listaEmpleados.get(i).setEdad(edadNueva);
             consultar();
             break;
                     }
         //en el caso 4 editamos el salario
         case 4:{
-            listaEmpleados.get(i).setSalario(Double.parseDouble
-            (JOptionPane.showInputDialog("Ingrese el salario del empleado")));
+            //creamos una variable nueva para almacenar el nuevo salario
+            double salarioEmpleado = 0;
+            
+            while(!valorCorrecto){  
+                //creamos un try catch para evitar que se caiga el programa
+                try {
+                    salarioEmpleado = Double.parseDouble
+                    (JOptionPane.showInputDialog("Ingrese el salario del empleado"));
+                    valorCorrecto = true;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Valor Incorrecto");
+                }
+            }           
+            //Le devolvemos el valor a false para que siga funcionando a futuro
+            valorCorrecto = false;
+            //guardamos la variable nueva en donde estaba el salario anterior
+            listaEmpleados.get(i).setSalario(salarioEmpleado);
             consultar();
             break;
                     }
