@@ -3,6 +3,7 @@ package proyectofinal;
 
 import Interfaces.CrudInterface;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Cliente extends Persona implements CrudInterface{
     //definicion de atributos
@@ -77,7 +78,7 @@ public class Cliente extends Persona implements CrudInterface{
             
             correoElectronico = JOptionPane.showInputDialog("Digite el correo electronico del cliente");
             
-            listaClientes.add(new Cliente(correoElectronico, super.getID(), super.getNombre(), super.getEdad()));
+            lstClientes.add(new Cliente(correoElectronico, super.getID(), super.getNombre(), super.getEdad()));
         }
     }
 
@@ -92,8 +93,8 @@ public class Cliente extends Persona implements CrudInterface{
         "Digite el ID de la persona que quieres modificar en el programa"));
         
         //se recorre el arraylist buscando la cedula de la persona a modificar
-        for(int i=0; i<listaClientes.size(); i++){
-            if(cedula == listaClientes.get(i).getID()){
+        for(int i=0; i<lstClientes.size(); i++){
+            if(cedula == lstClientes.get(i).getID()){
                 //creamos un mini menu para seleccionar la opcion deseada
                 opc = Integer.parseInt(JOptionPane.showInputDialog
                 (null, "Ingrese lo que desea hacer\n" 
@@ -127,13 +128,13 @@ public class Cliente extends Persona implements CrudInterface{
             valorCorrecto = false;
             
             //guardamos la variable nueva en donde estaba la cedula anterior
-            listaClientes.get(i).setID(cedulaNueva);
+            lstClientes.get(i).setID(cedulaNueva);
             consultar();
             break;
                     }
         //en el caso 2 editamos el nombre
         case 2:{
-            listaClientes.get(i).setNombre
+            lstClientes.get(i).setNombre
             (JOptionPane.showInputDialog("Escriba el nombre del empleado"));
             consultar();
             break;
@@ -157,13 +158,13 @@ public class Cliente extends Persona implements CrudInterface{
             valorCorrecto = false;
             
             //guardamos la variable nueva en donde estaba la edad anterior
-            listaClientes.get(i).setEdad(edadNueva);
+            lstClientes.get(i).setEdad(edadNueva);
             consultar();
             break;
                     }
         //en el caso 4 editamos el correo electronico
         case 4:{
-            listaClientes.get(i).setCorreoElectronico
+            lstClientes.get(i).setCorreoElectronico
             (JOptionPane.showInputDialog("Ingrese el correo electronico del empleado"));
             consultar();
             break;
@@ -183,7 +184,7 @@ public class Cliente extends Persona implements CrudInterface{
     @Override
     public void consultar() {
         String msj = "";
-        for(Cliente a: listaClientes){
+        for(Cliente a: lstClientes){
             msj = msj +"\n" + a;
         }//fin del for
         
@@ -199,12 +200,10 @@ public class Cliente extends Persona implements CrudInterface{
         "Digite el ID del cliente a eliminar"));
         
         //se recorre el arraylist buscando la cedula a eliminar
-        for(int i=0; i<listaClientes.size(); i++){
-            if(cedula == listaClientes.get(i).getID()){
-                listaClientes.remove(i);    
+        for(int i=0; i<lstClientes.size(); i++){
+            if(cedula == lstClientes.get(i).getID()){
+                lstClientes.remove(i);    
             }
         }
-    }
-    }
-    
-}//fin de la clase
+        }
+    }//fin de la clase
