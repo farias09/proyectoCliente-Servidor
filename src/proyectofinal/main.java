@@ -9,6 +9,7 @@ public class main {
         Producto productoMenu = new Producto();
         Ventas ventasMenu = new Ventas();
         
+        
         String[] opciones = {"Registro de Empleados", "Registro de Clientes", "Registro de Proveedores", "Registro de Productos", "Registro de Ventas", "Volver"};
         int opcion = -1;
         boolean existe;
