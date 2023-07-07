@@ -82,17 +82,74 @@ public class Proveedores implements CrudInterface{
 
     @Override
     public void modificar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int cedula;
+        int opc;
+        
+        //se solicita el ID para buscar el proveedor
+        cedula = Integer.parseInt(JOptionPane.showInputDialog(null, 
+        "Digite el ID deL proveedor que quieres modificar en el programa"));
+        
+        for(int i=0; i<lstProveedores.size(); i++){
+            if(cedula == lstProveedores.get(i).getIDProveedor()){
+                //creamos un mini menu para seleccionar la opcion deseada
+                opc = Integer.parseInt(JOptionPane.showInputDialog
+                (null, "Ingrese lo que desea hacer\n" 
+                + "\n"
+                + "1. Editar Cedula\n"
+                + "\n"
+                + "2. Editar Nombre\n"
+                + "\n"
+                + "3. Salir del sistema\n")); 
+                switch(opc){
+        //en el caso 1 editamos la cedula            
+        case 1:{
+            lstProveedores.get(i).setIDProveedor(Integer.parseInt(JOptionPane.showInputDialog
+            ("Digite la cedula del empleado")));
+            consultar();
+            break;
+            }
+        //en el caso 2 editamos el nombre
+        case 2:{
+            lstProveedores.get(i).setNombreProveedor
+            (JOptionPane.showInputDialog("Escriba el nombre del empleado"));
+            consultar();
+            break;
+            }
+        case 3:{
+            System.exit(0);
+                    }
+        default:{
+            JOptionPane.showMessageDialog(null,
+                    "Opcion no valida");
+            }
+                }
+            }
+        }
     }
 
     @Override
     public void consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String msj = "";
+        for(Proveedores a: lstProveedores){
+            msj = msj +"\n" + a;
+        }//fin del for
+        
+        JOptionPane.showMessageDialog(null, msj);
     }
 
     @Override
     public void eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int cedula;
+        
+        //se solicita la cedula a eliminar
+        cedula = Integer.parseInt(JOptionPane.showInputDialog(null, 
+        "Digite el ID de la persona a eliminar"));
+        
+        //se recorre el arraylist buscando la cedula a eliminar
+        for(int i=0; i<lstProveedores.size(); i++){
+            if(cedula == lstProveedores.get(i).getIDProveedor()){
+                lstProveedores.remove(i);    
+            }
+        }   
     }
-    
-}
+} //fin de la clase
