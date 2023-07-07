@@ -1,17 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyectofinal;
+
+import java.util.ArrayList;
 
 import Interfaces.*;
 
-/**
- *
- * @author AMD
- */
 public class Proveedores implements CrudInterface{
-    
+    //definicion de atributos
+    private String nombreProveedor;
+
+    //creamos un arraylist para los proveedores
+    public static ArrayList<Proveedores> lstProveedores = new ArrayList<>();
+
+    public Proveedores(){        
+    }
+
+    //creacion del constructor
+    public Proveedores(String nombreProveedor){
+        this.nombreProveedor = nombreProveedor;
+    }
+
+    //creacion de los encapsuladores
     
 
     @Override
