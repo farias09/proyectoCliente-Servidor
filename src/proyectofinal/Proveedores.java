@@ -82,6 +82,7 @@ public class Proveedores implements CrudInterface{
 
     @Override
     public void modificar() {
+        boolean valorCorrecto = true;
         int cedula;
         int opc;
         
@@ -103,8 +104,24 @@ public class Proveedores implements CrudInterface{
                 switch(opc){
         //en el caso 1 editamos la cedula            
         case 1:{
-            lstProveedores.get(i).setIDProveedor(Integer.parseInt(JOptionPane.showInputDialog
-            ("Digite la cedula del empleado")));
+           //creamos una variable nueva para almacenar la cedula nueva
+            int cedulaNueva = 0;
+            
+            while(!valorCorrecto){
+                //creamos un try catch para evitar que se caiga el programa
+                try {
+                    cedulaNueva = Integer.parseInt
+                    (JOptionPane.showInputDialog("Digite el ID"));
+                    valorCorrecto = true;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Valor Incorrecto");
+                }
+            }            
+            //Le devolvemos el valor a false para que siga funcionando a futuro
+            valorCorrecto = false;
+            
+            //guardamos la variable nueva en donde estaba la cedula anterior
+            lstProveedores.get(i).setIDProveedor(cedulaNueva);
             consultar();
             break;
             }
